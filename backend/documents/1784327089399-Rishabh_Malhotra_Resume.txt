@@ -1,0 +1,41 @@
+RISHABH MALHOTRA
+Software Developer
+78148-37076 | rishabh124m@gmail.com | github.com/rishi-rm/
+PROFILE
+Full-stack developer skilled in React, Node.js, Express.js, MongoDB, and API-driven systems, with hands-on experience building
+production-ready business applications, inventory management systems, video streaming platforms, and AI-powered tools.
+Experienced in leveraging AI tools such as Claude and GitHub Copilot to accelerate development. Strong foundation in DSA, OOP,
+and clean architecture.
+PROJECTS
+Inventory Management System | React, Node.js, Express.js, MongoDB, TailwindCSS (2026)
+• Developed a full-stack inventory management platform used by local businesses to manage raw materials, products, stock levels,
+and inventory valuation.
+• Built secure REST APIs with PIN-based access control, automated GST/freight cost calculations, and inventory validation.
+• Implemented manufacturing workflows that automatically deduct raw materials and maintain stock consistency.
+• Created analytics dashboards for inventory value, stock metrics, low-stock alerts, and operational reporting.
+YouTube Transcript Extractor + AI Summarizer | React, Node.js, Express, HuggingFace API (2025)
+• Built a transcript retrieval and AI summarization platform with translation support and chunked text processing.
+• Designed REST endpoints for transcript extraction and summarization while handling large-text workflows and API limits.
+• Improved backend reliability using asynchronous pipelines and robust fallback logic.
+FlixTerra – Movie Streaming Web App | React, TailwindCSS, Node.js, Express (2025)
+• Developed a full-stack movie platform with search, filtering, dynamic routing, and detailed movie pages.
+• Implemented HTTP range-based video streaming for smooth playback and seeking.
+• Added favorites management and reusable component architecture.
+EXPERIENCE
+Winter Internship
+• Refactored backend email workflows by replacing SendGrid with Nodemailer across OTP, password reset, and notification
+systems.
+• Worked with Express, MongoDB, JWT authentication, and role-based access systems.
+• Tested REST APIs using Postman and improved backend code quality while maintaining existing APIs.
+EDUCATION
+Chandigarh University — Bachelor of Computer Applications (2023–Present)
+SKILLS
+Languages: JavaScript, C++
+Frontend: React.js, TailwindCSS, React Router
+Backend: Node.js, Express.js, REST APIs
+Databases: MongoDB, MySQL
+Tools: Git, GitHub, Postman, Vercel, Render, Ngrok, Claude, GitHub Copilot
+Core CS: DSA, OOP, DBMS
+
+-- 1 of 1 --
+

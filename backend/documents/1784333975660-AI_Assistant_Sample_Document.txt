@@ -1,0 +1,35 @@
+Artificial Intelligence Research Notes
+This document is intended as a realistic sample PDF for testing PDF parsing, chunking,
+embeddings, semantic search, and retrieval in an AI assistant project.
+Introduction
+Artificial Intelligence (AI) is the field of building systems capable of performing tasks that normally
+require human intelligence. Examples include language understanding, computer vision,
+recommendation systems, and robotics.
+Machine Learning
+Machine learning allows computers to learn patterns from data rather than relying on explicit rules.
+Supervised learning uses labeled data, unsupervised learning discovers hidden structure, and
+reinforcement learning learns through rewards.
+Large Language Models
+Large Language Models (LLMs) are trained on massive text corpora using transformer
+architectures. They generate text, answer questions, summarize documents, and assist with
+programming.
+Retrieval-Augmented Generation
+RAG combines semantic search with language models. Documents are split into chunks, converted
+into vector embeddings, stored in a vector database, and retrieved based on similarity before
+generating an answer.
+Example Data
+Important technologies include Node.js, Express, PostgreSQL, MongoDB, Redis, Docker,
+Kubernetes, FastAPI, LangChain, OpenAI APIs, and vector databases like Qdrant or Pinecone.
+Conclusion
+A production AI assistant typically includes authentication, document upload, OCR, chunking,
+embedding generation, vector storage, retrieval, prompt construction, and answer generation.
+Sample Table (plain text)
+Model | Parameters | Primary Use
+GPT-4 | Large | General reasoning
+Llama 3 | Various | Open-source applications
+Mistral | Medium | Efficient inference
+Keywords: embeddings, cosine similarity, chunk overlap, OCR, metadata, semantic search, vector
+database, BM25, hybrid search, reranking.
+
+-- 1 of 1 --
+

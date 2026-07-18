@@ -1,0 +1,79 @@
+Roll Number:
+Thapar Institute of Engineering and Technology, Patiala
+Department of Computer Science and Engineering
+MCA (1st Year) MCA-105: Data Structures
+End-Sem Test; Dec 05, 2024
+Time: 03Hours; MM: 45 Name of Faculty: Dr. Rinkle Rani
+Note : Attempt any five questions.
+Q No. Question Marks CO BL
+Q1. a) Sort the following sequence of elements in descending order by
+applying Heap Sort.
+(6) CO2 L3
+38 24 44 21 55 47 67 49
+For each iteration :
+i) Design the min heap.
+ii) Delete the root and redesign the min heap.
+iii) Show the contents of the array.
+b) What is hashing? Explain various hash functions used for hashing
+with the help of examples.
+(3) CO2 L2
+Q2. a) Find all the nodes approachable from node 0 of the following
+graph using BFS graph traversal algorithm.
+(6) C04 L3
+li	t
+CI3.111
+CO fill a
+i) Display the adjacency list of the graph.
+ii) Show the use of Queue and change of Front and Rear ends
+during each iteration.
+b) Discuss logic of Radix Sort with example. (3) CO2 L2
+Q3. a) Write algorithm for counting sort. Apply your logic on the
+following array. Show status of count array and output array
+during each iteration.
+(6) CO2 L3
+2 5 3 0 2 3 0 3
+b) Differentiate between the following in a tabular format.
+i) Array and Link List
+ii) Stack and Queue
+(3) CO1 L2
+
+-- 1 of 2 --
+
+Q4. a) Insert the following keys one by one into a binary search tree in
+the order specified.
+18, 35, 23, 12, 6, 28, 15, 4
+(6) CO3 L3
+i) Show the final binary search tree after the insertions.
+ii) How much memory is required to store this binary tree
+sequentially?
+iii) Write pre-order and post-order traversals of the above BST.
+iv) Draw the binary search tree after deleting 18 from it.
+b) Define Graph. Discuss the various memory representations (3) CO3 Ll
+techniques used for graph with the help of an example.
+Q5. a) Apply All Pairs Shortest Path (APSP) Floyd's Algorithm on the
+following graph.
+(6) C04 L3
+1
+7------7 A 4
+/ \ 6
+D .„----
+b) What do you mean by a doubly link list? Discuss advantages and (3) CO1 L2
+disadvantages of doubly linked list over singly linked list.
+Q6. a) Find out the minimum spanning tree using Prim's Algorithm of (6) CO3 L3
+the following graph. What is the total weight of the resulting
+minimum spanning tree?
+, --,
+, 3 )
+3 2	(
+ti
+6 4
+1_2
+\„,2
+-,/ r-. 6 ; S
+"--......-)
+b) Define binary tree? Discuss the various memory representations (3) CO3 L1
+techniques used for binary trees with the help of suitable
+example.
+
+-- 2 of 2 --
+
