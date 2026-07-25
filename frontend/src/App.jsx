@@ -1,82 +1,94 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useRef } from "react"
+import { useEffect, useState } from "react";
+import { Upload } from "lucide-react";
+import Chat from "./components/Chat";
 
 export default function App() {
-  const [extractedText, setExtractedText] = useState("")
-  const [filesList, setFilesList] = useState([])
-  const fileInputRef = useRef(null);
+  const [extractedText, setExtractedText] = useState("");
+  const [filesList, setFilesList] = useState([]);
+  const [userQuery, setUserQuery] = useState("");
 
-  const handleUpload = async () => {
-    const file = fileInputRef.current.files[0];
-    if (!file) {
-      alert("Please select a PDF");
-      return;
+  const getFiles = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/documents");
+      const data = await res.json();
+      setFilesList(data);
+      console.log(data);
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    const formData = new FormData();
-    formData.append("pdf", file);   
-    
-    const res = await fetch("http://localhost:5000/upload", {
-      method:"POST",
-      body: formData,
-    });
+  useEffect(() => {
+    getFiles();
+  }, []);
 
-    const data = await res.json();
-    console.log(data);
+  const handleUpload = () => {
+    const inputElement = document.createElement("input");
+    inputElement.type = "file";
+    inputElement.accept = "application/pdf";
 
-    await getFiles();
-    // console.log(data.pdfText)
-    // setExtractedText(data.pdfText)
-  }
+    inputElement.onchange = async () => {
+      const file = inputElement.files?.[0];
+      if (!file) return;
 
-  const getFiles = async()=>{
-    const res = await fetch("http://localhost:5000/documents")
-    const data = await res.json()
-    setFilesList(data)
-    console.log(data)
-  }
+      try {
+        const formData = new FormData();
+        formData.append("pdf", file);
 
-  const getDocumentText = async(file)=>{
-    const filename = file.filename
-    const res = await fetch(`http://localhost:5000/documents/${filename}`)
-    const data = await res.json()
-    console.log(data);
+        const res = await fetch("http://localhost:5000/upload", {
+          method: "POST",
+          body: formData,
+        });
 
-    setExtractedText(data.documentText)
-  }
+        const data = await res.json();
+        console.log(data);
 
-  useEffect(()=>{
-    getFiles()
-  }, [])
+        if (data.pdfText) {
+          setExtractedText(data.pdfText);
+        }
 
+        await getFiles();
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    inputElement.click();
+  };
 
   return (
-    <div className="flex flex-col m-4">
-      <input type="file" name="pdf" id="pdf" accept=".pdf" ref={fileInputRef} />
-      <button className="w-max bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center"
-      onClick={handleUpload}
-      >
-        Upload
-      </button>
+    <div className="min-h-screen w-screen flex">
+      {/* Left Panel */}
+      <div className="flex flex-col items-center justify-center gap-4 min-h-screen w-[30vw]">
+        <div
+          className="p-4 px-8 pr-10 rounded-xl cursor-pointer w-max flex gap-2 text-xl bg-red-500 font-bold text-white"
+          onClick={handleUpload}
+        >
+          <Upload color="#ffffff" strokeWidth={3} />
+          <h3>Upload a PDF file</h3>
+        </div>
 
-      <div className="border rounded flex flex-col gap-2 p-2">
-        {
-          filesList.map((file, idx)=>(
-            <button key={idx} className="bg-gray-300 rounded text-xl p-2 w-max cursor-pointer"
-            onClick={()=>{getDocumentText(file)}}
-            >{file.filename}</button>
-          ))
-        }
+        {filesList.length > 0 && (
+          <div className="border rounded w-[90%] overflow-hidden flex flex-col gap-2 p-2">
+            {filesList.map((file, idx) => (
+              <button
+                key={idx}
+                className="bg-gray-300 rounded text-xl p-2 cursor-pointer text-left"
+              >
+                {file.filename}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
-      <textarea name="showExtractedText" id="showExtractedText" className="border border-black rounded-md min-h-[30rem] w-[50rem] p-2" readOnly
-      value={extractedText}
-      ></textarea>
-
-      <div>
-
+      {/* Right Panel */}
+      <div className="flex flex-col min-h-screen w-[70vw] border-l-2 border-[#131313]">
+        <Chat
+          userQuery={userQuery}
+          setUserQuery={setUserQuery}
+        />
       </div>
     </div>
-  )
+  );
 }

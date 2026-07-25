@@ -14,18 +14,3 @@ exports.getDocuments = () => {
         filename: file
     }));
 }
-
-exports.getDocumentText = (filename)=>{
-
-    const txtName = path.basename(filename, ".pdf") + ".txt"
-
-    const txtPath = path.join(
-        __dirname,
-        "../documents",
-        txtName
-    )
-
-    return fs.readFileSync(txtPath, "utf8")
-}
-
-// console.log(__dirname)
