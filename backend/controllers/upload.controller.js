@@ -3,7 +3,7 @@ const pdfService = require("../services/pdf.service.js");
 exports.uploadPDF = async (req, res) => {
 
     try{
-        const pdfData = await pdfService.extractText(req.file.path)
+        const pdfData = await pdfService.getChunks(req.file)
         const text = pdfData.text
 
         console.log(pdfData)

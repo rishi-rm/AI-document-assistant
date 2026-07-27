@@ -1,12 +1,20 @@
 import { useRef } from "react";
 import { SendHorizontal } from "lucide-react";
 
-export default function Chat({ userQuery, setUserQuery }) {
+export default function Chat({ userQuery, setUserQuery, setMessages, messages }) {
   const textareaRef = useRef(null);
 
   const sendMessage = async() => {
     if (!userQuery.trim()) return;
 
+    const message = {
+      sender: 'user',
+      content: userQuery
+    }
+    
+    setMessages(prev=>[...prev, message]);
+    
+    setUserQuery("");
     const res = await fetch("http://localhost:5000/chat", {
         method:"POST",
         headers:{
@@ -21,7 +29,6 @@ export default function Chat({ userQuery, setUserQuery }) {
 
     console.log(data);
 
-    setUserQuery("");
 
     // Reset textarea height
     textareaRef.current.style.height = "auto";
@@ -49,7 +56,13 @@ export default function Chat({ userQuery, setUserQuery }) {
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-4">
       {/* Chat Area */}
-      <div className="h-[80%] w-[95%] rounded-2xl bg-[#131313]"></div>
+      <div className="p-4 h-[80%] w-[95%] rounded-2xl bg-[#131313] flex flex-col gap-4">
+        {
+          messages.map((message, idx)=>(
+            <div key={idx} className={`font-semibold text-white p-2 rounded-lg min-w-[8rem] text-xl max-w-[20rem] w-fit ${message.sender==="user"?"self-end bg-[#ff2b2b]":"self-start bg-[#2B2B2B]"}`}>{message.content}</div>
+          ))
+        }
+      </div>
 
       {/* Input */}
       <div className="relative w-[95%]">

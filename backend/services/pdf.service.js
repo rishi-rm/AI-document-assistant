@@ -1,11 +1,17 @@
 const fs = require("fs")
 const path = require("path")
 const { PDFParse } = require("pdf-parse")
-const {embeddingService} = require("./embedding.service")
+const embeddingService = require("./embedding.service")
 
-exports.extractText = async (filePath) => {
-    const parser = new PDFParse({ url: filePath })
+exports.getChunks = async (file) => {
+
+    console.log(file)
+
+    const parser = new PDFParse({ url: file.path })
     const pdfData = await parser.getText()
+
+    console.log("chunking: ")
+    console.log(pdfData)
 
     const pdfText = pdfData.text;
     let chunks = [];
@@ -18,20 +24,24 @@ exports.extractText = async (filePath) => {
         let chunk = pdfText.slice(current, end)
 
         chunks.push({
+            source_file: file.originalname,
             chunkIndex: chunks.length,
             text: chunk,
         });
 
         current = end;
     }
+    console.log("chunks done")
     const chunkTexts = chunks.map(chunk => chunk.text);
     const embeddings = await embeddingService.getEmbeddings(chunkTexts);
+
+    console.log("embeddings done")
 
     for (let i = 0; i < chunks.length; i++) {
         chunks[i].embedding = embeddings.embeddings[i];
     }
 
-    const fileName = path.basename(filePath, ".pdf") + ".chunks.json";
+    const fileName = path.basename(file.path, ".pdf") + ".chunks.json";
 
     const chunkFileName = path.join(
         __dirname,
@@ -39,8 +49,11 @@ exports.extractText = async (filePath) => {
         fileName
     )
 
+    console.log(chunkFileName)
+
     const jsonString = JSON.stringify(chunks, null, 2);
     fs.writeFileSync(chunkFileName, jsonString, 'utf8');
+    console.log("file saved")
 
     return pdfData
 }

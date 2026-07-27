@@ -6,6 +6,11 @@ export default function App() {
   const [extractedText, setExtractedText] = useState("");
   const [filesList, setFilesList] = useState([]);
   const [userQuery, setUserQuery] = useState("");
+  const [messages, setMessages] = useState([]);
+  /* message:{
+  sender: user || bot,
+  content: xyz
+}*/
 
   const getFiles = async () => {
     try {
@@ -57,7 +62,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen w-screen flex">
+    <div className="min-h-screen w-screen flex bg-[#ffffff]">
       {/* Left Panel */}
       <div className="flex flex-col items-center justify-center gap-4 min-h-screen w-[30vw]">
         <div
@@ -87,6 +92,8 @@ export default function App() {
         <Chat
           userQuery={userQuery}
           setUserQuery={setUserQuery}
+          setMessages={setMessages}
+          messages={messages}
         />
       </div>
     </div>

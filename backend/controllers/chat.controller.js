@@ -1,16 +1,9 @@
-const embeddingService = require("../services/embedding.service");
-
+const chatService = require("../services/chat.service")
 exports.chatController = async (req, res) => {
 
     const { userQuery } = req.body;
 
-    const { embeddings } =
-        await embeddingService.getEmbeddings([userQuery]);
+    const sortedChunks = await chatService.chatService(userQuery);
 
-    const queryEmbedding = embeddings[0];
-
-    res.json({
-        queryEmbedding
-    });
-
+    res.json(sortedChunks);
 };
