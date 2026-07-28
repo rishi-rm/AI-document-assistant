@@ -1,3 +1,4 @@
+import ReactMarkdown from "react-markdown";
 import { useRef } from "react";
 import { SendHorizontal } from "lucide-react";
 
@@ -27,8 +28,12 @@ export default function Chat({ userQuery, setUserQuery, setMessages, messages })
 
     const data = await res.json();
 
-    console.log(data);
+    const ai_response = {
+      sender: "bot",
+      content: data.ans
+    };
 
+    setMessages(prev=>[...prev, ai_response])
 
     // Reset textarea height
     textareaRef.current.style.height = "auto";
@@ -56,10 +61,10 @@ export default function Chat({ userQuery, setUserQuery, setMessages, messages })
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-4">
       {/* Chat Area */}
-      <div className="p-4 h-[80%] w-[95%] rounded-2xl bg-[#131313] flex flex-col gap-4">
+      <div className="p-4 h-[80%] w-[95%] rounded-2xl bg-[#131313] flex flex-col gap-4 overflow-y-scroll">
         {
           messages.map((message, idx)=>(
-            <div key={idx} className={`font-semibold text-white p-2 rounded-lg min-w-[8rem] text-xl max-w-[20rem] w-fit ${message.sender==="user"?"self-end bg-[#ff2b2b]":"self-start bg-[#2B2B2B]"}`}>{message.content}</div>
+            <div key={idx} className={`text-white p-2 rounded-lg min-w-[8rem] text-xl max-w-[35rem] w-fit ${message.sender==="user"?"self-end bg-[#ff2b2b]":"self-start bg-[#2B2B2B]"}`}><ReactMarkdown>{message.content}</ReactMarkdown></div>
           ))
         }
       </div>

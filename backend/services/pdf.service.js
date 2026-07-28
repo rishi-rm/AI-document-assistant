@@ -2,16 +2,13 @@ const fs = require("fs")
 const path = require("path")
 const { PDFParse } = require("pdf-parse")
 const embeddingService = require("./embedding.service")
-
+const chunkIndex = require("./chunkIndex.service")
 exports.getChunks = async (file) => {
 
     console.log(file)
 
     const parser = new PDFParse({ url: file.path })
     const pdfData = await parser.getText()
-
-    console.log("chunking: ")
-    console.log(pdfData)
 
     const pdfText = pdfData.text;
     let chunks = [];
@@ -54,6 +51,8 @@ exports.getChunks = async (file) => {
     const jsonString = JSON.stringify(chunks, null, 2);
     fs.writeFileSync(chunkFileName, jsonString, 'utf8');
     console.log("file saved")
+
+    chunkIndex.addChunks(chunks);
 
     return pdfData
 }

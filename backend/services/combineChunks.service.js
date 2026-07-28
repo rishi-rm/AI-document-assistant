@@ -8,7 +8,7 @@ exports.combineChunks = () => {
 
     if (chunkFiles.length === 0) return [];
 
-    let allChunks = [];
+   let allChunks = [];
 
     for (const chunkFile of chunkFiles) {
         const filePath = path.join(chunksDir, chunkFile);

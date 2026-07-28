@@ -1,3 +1,4 @@
+require('dotenv').config();
 const app = require("./app");
 const chunksIndex = require("../services/chunkIndex.service")
 const PORT = 5000;
